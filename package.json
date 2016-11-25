@@ -4,7 +4,6 @@
   "description": "Angular 2, gulp, three.js",
   "main": "index.js",
   "scripts": {
-    // in console: $ npm run [gulp | test]
     "gulp": "./node_modules/.bin/gulp",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
