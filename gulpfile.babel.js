@@ -9,6 +9,7 @@ import tsify from 'tsify';
 import browserify from 'browserify';
 import gutil from 'gulp-util';
 import source from 'vinyl-source-stream';
+import del from 'del';
 
 // ================ main const ================
 
@@ -46,8 +47,11 @@ const htmlPaths = {
     dest: `${dirs.dest}`,
 };
 
+
 // ================ task ================
 
+
+//compile sass file
 gulp.task('styles',
     () => gulp.src(sassPaths.src)
         .pipe(sourcemaps.init())
@@ -56,10 +60,12 @@ gulp.task('styles',
         .pipe(gulp.dest(sassPaths.dest))
 );
 
+//copy fonts
 gulp.task('fonts', () => gulp.src(fontsPaths.src)
     .pipe(gulp.dest(fontsPaths.dest))
 );
 
+//copy html
 gulp.task('pages', () => gulp.src(htmlPaths.src)
     .pipe(gulp.dest(htmlPaths.dest))
 );
@@ -79,20 +85,46 @@ gulp.task('tsconf', () => {
     }
 );
 
+//for command `gulp`
 gulp.task('default', ['styles', 'fonts', 'pages'],function () {
     return browserify({
-        basedir: '.',
+        // basedir: '.',
         debug: true,
-        entries: ['source/main.ts'],
-        cache: {},
-        packageCache: {}
+        entries: ['source/bootstrap.ts'],
+        // cache: {},
+        // packageCache: {}
     })
-        .plugin(tsify)
+        .plugin(tsify,{
+            target: 'es5',
+            experimentalDecorators: true,
+        })
         .bundle()
+        .on('error', function(err){
+            gutil.log(gutil.colors.red.bold('[browserify error]'));
+            gutil.log(err.message);
+            this.emit('end');
+        })
         .pipe(source('bundle.js'))
         .pipe(gulp.dest(dirs.dest));
 });
 
+// clean the contents of the distribution directory
+gulp.task('clean', function () {
+    return del(`${dirs.dest}/**/*`);
+});
+
+
+// ================ command ================
+
+
+gulp.task('build',['clean', 'default']);
+
+
 // ================ watch ================
 
+
+gulp.task('watch', ()=>{
+    gulp.watch(`${dirs.src}/**/*`,['build']);
+
+});
 

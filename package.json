@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "Angular 2, bootstrap, gulp, three.js",
   "main": "index.js",
+  "repository": "https://github.com/kykyk/web3d",
   "scripts": {
     "gulp": "./node_modules/.bin/gulp",
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -14,12 +15,14 @@
     "babel-preset-es2015": "^6.18.0",
     "babel-register": "^6.18.0",
     "browserify": "^13.1.1",
+    "del": "^2.2.2",
     "gulp": "^3.9.1",
     "gulp-bower": "0.0.13",
     "gulp-sass": "^2.3.2",
     "gulp-sourcemaps": "^1.9.1",
     "gulp-util": "^3.0.7",
     "tsify": "^2.0.3",
+    "typescript": "^2.0.10",
     "vinyl-source-stream": "^1.1.0"
   },
   "dependencies": {
@@ -27,7 +30,6 @@
     "es6-shim": "^0.35.1",
     "reflect-metadata": "^0.1.8",
     "rxjs": "^5.0.0-rc.4",
-    "typescript": "^2.0.10",
     "zone.js": "^0.7.2"
   }
 }
