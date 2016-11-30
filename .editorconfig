@@ -4,14 +4,14 @@
 root = true
 
 # Unix-style newlines with a newline ending every file
-[*]
+[source/*]
 end_of_line = lf
 insert_final_newline = true
 
 # Matches multiple files with brace expansion notation
 # Set default charset
-[*.{js,html,css,ts,json}]
+[source/*.{js,html,css,ts,json,scss}]
 charset = utf-8
-# 2 space indentation
+# 4 space indentation
 indent_style = space
-indent_size = 2
+indent_size = 4

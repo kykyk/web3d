@@ -1,0 +1,23 @@
+{
+  "name": "web3d",
+  "description": "Angular 2, bootstrap, gulp, three.js",
+  "main": "index.js",
+  "authors": [
+    "kykyk"
+  ],
+  "license": "ISC",
+  "homepage": "https://github.com/kykyk/web3d",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "bootstrap-sass": "^3.3.7",
+    "font-awesome": "fontawesome#^4.7.0",
+    "three.js": "threejs#*"
+  }
+}
