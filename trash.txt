@@ -4,7 +4,7 @@ from gulpfile.js
 //     return browserify({
 //         // basedir: '.',
 //         debug: true,
-//         entries: ['source/bootstrap.ts'],
+//         entries: ['source/main.ts'],
 //         // cache: {},
 //         // packageCache: {}
 //     })

@@ -9,10 +9,25 @@
     <script src="../bower_components/bootstrap-sass/assets/javascripts/bootstrap.js"></script>
     <script src="../bower_components/three.js/build/three.js" type = "application/javascript" ></script>
 
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- 1. Load libraries -->
+    <!-- Polyfill(s) for older browsers -->
+    <script src="lib/core-js/client/shim.min.js"></script>
+
+    <script src="lib/zone.js/dist/zone.js"></script>
+    <script src="lib/reflect-metadata/Reflect.js"></script>
+    <script src="lib/systemjs/dist/system.src.js"></script>
+
+    <!-- 2. Configure SystemJS -->
+    <script src="systemjs.config.js"></script>
+    <script>
+        System.import('app')
+            .then(null, console.error.bind(console));
+    </script>
+
 </head>
 <body>
-    <p id="greeting">Loading ...</p>
-    <script src="bundle.js"></script>
     <main-app>Loading...</main-app>
 </body>
 </html>

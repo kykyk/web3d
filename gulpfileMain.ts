@@ -142,9 +142,15 @@ export class Gulpfile {
             .pipe(gulp.dest(`${dirs.dest}/lib`));
     }
 
+    @Task()
+    jsfiles(){
+        return gulp.src([`${dirs.src}/systemjs.config.js`])
+            .pipe(gulp.dest(dirs.dest));
+    }
+
     @SequenceTask()
     default() {
-        return ['clean','tslint', 'compile']
+        return ['clean','libs', 'jsfiles','pages','fonts','styles','tslint', 'compile']
     }
 }
 
