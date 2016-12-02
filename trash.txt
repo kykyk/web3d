@@ -1,0 +1,23 @@
+from gulpfile.js
+// //for command `gulp`
+// gulp.task('default', ['styles', 'fonts', 'pages'], function () {
+//     return browserify({
+//         // basedir: '.',
+//         debug: true,
+//         entries: ['source/bootstrap.ts'],
+//         // cache: {},
+//         // packageCache: {}
+//     })
+//         .plugin(tsify, {
+//             target: 'es5',
+//             experimentalDecorators: true,
+//         })
+//         .bundle()
+//         .on('error', function (err) {
+//             gutil.log(gutil.colors.red.bold('[browserify error]'));
+//             gutil.log(err.message);
+//             this.emit('end');
+//         })
+//         .pipe(source('bundle.js')) //sourse = vinyl-source-stream
+//         .pipe(gulp.dest(dirs.dest));
+// });

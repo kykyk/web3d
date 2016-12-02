@@ -1,0 +1,19 @@
+{
+  "compilerOptions": {
+    "outDir": "build/app",
+    "target": "es5",
+    "module": "system",
+    "moduleResolution": "node",
+    "sourceMap": true,
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "removeComments": false,
+    "noImplicitAny": false
+  },
+  "exclude": [
+    "bower_components",
+    "node_modules",
+    "gulpfileMain",
+    "gulpfile"
+  ]
+}
