@@ -55,7 +55,7 @@ export class Gulpfile {
      */
     @Task()
     clean(cb: Function) {
-        gutil.log('OK!!!');
+        // gutil.log('OK!!!');
         return del(`${dirs.dest}/**/*`, cb);
     }
 
