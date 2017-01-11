@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+    <head> 
+	     <script src="js/three.min.js"></script>
+		 <script src="js/TrackballControls.js"></script>
+	</head>
+	<body>
+        
+		<script>
+
+		var renderer, camera, scene, curve;
+		var cube_texture, loader, cube, cube_material, cube_geometry, cube;
+		var controls, light, curveObject;
+		var vertices = [];
+		var k = 0;
+
+		init();
+		animate();
+
+	function init()
+	{
+		camera = new THREE.PerspectiveCamera(50,window.innerWidth / window.innerHeight, 1,10000);
+		camera.position.z=50;
+		scene = new THREE.Scene();
+		scene.background = new THREE.Color( 0xf7f7f9 );
+		controls = new THREE.TrackballControls( camera );
+		
+		light = new THREE.DirectionalLight( 0xffffff,1 );
+		light.position.set( 0, 0, 100 ).normalize();
+		scene.add(light);
+		
+
+		curve = new THREE.CubicBezierCurve3( 
+		  new THREE.Vector3( -39, 14, 0 ), 
+		  new THREE.Vector3( 13, -38, 0 ),
+		  new THREE.Vector3( -39, -15, 0 ),
+		  new THREE.Vector3( 10, 0, 0 )); 
+
+		vertices = curve.getPoints( 500 ); 
+
+		var geometry = new THREE.Geometry(); 
+		geometry.vertices = curve.getPoints( 500 ); 
+		var material = new THREE.LineBasicMaterial( { color : 0x660066 } ); 
+		curveObject = new THREE.Line( geometry, material ); 
+		scene.add(curveObject); 
+
+
+		geometry=new THREE.CubeGeometry( 3, 5, 8);
+
+	 
+		//var material = new THREE.MeshBasicMaterial({overdraw:false});
+
+		cube_material=new THREE.MeshBasicMaterial({color: 0x99CC00});
+				//cube=new THREE.Mesh(geometry, cube_material);
+				scene.add(cube);
+				
+		material.transparent = true;
+			
+		cube=new THREE.Mesh(geometry, material);
+
+		var edges = new THREE.EdgesHelper( cube, 0x000000);
+
+		edges.material.linewidth = 2;
+		scene.add(edges);
+		scene.add(cube);
+
+		renderer = window.WebGLRenderingContext ? new THREE.WebGLRenderer({antialias:true}) : new THREE.CanvasRenderer();
+		//renderer.setSize( window.innerWidth, window.innerHeight );
+		renderer.setSize( 800, 300 );
+		document.body.appendChild( renderer.domElement );
+
+	}
+
+	function rendered() 
+	{
+		renderer.render( scene, camera );
+	}
+
+	function animate() 
+	{
+	 	cube.rotation.x += 0.01;
+		cube.rotation.y += 0.01;
+	    requestAnimationFrame( animate );
+	    renderer.render( scene, camera );
+		rendered();		
+		UP_d();
+	}
+
+	function UP_d()
+	{
+		k = k + 0.5;
+		if( k < vertices.length-10){
+			console.log(vertices[k]);
+			cube.position.set(vertices[k].x, vertices[k].y,vertices[k].z);
+		}
+	}
+
+		</script>
+	</body>
+</html>

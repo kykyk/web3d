@@ -7,6 +7,7 @@ export class MenuItemService {
         return [
             {url: '/test1', name: 'test1'},
             {url: '/test2', name: 'test2'},
+            {url: '/labs', name: 'labs'},
         ];
     }
 }

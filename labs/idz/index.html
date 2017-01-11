@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+    <head> 
+	    <script src="./js/three.min.js"></script>
+		<script src="./js/TrackballControls.js"></script>
+		<script src="js/Detector.js"></script>
+		<script src="js/Stats.js"></script>
+		<script src="js/OrbitControls.js"></script>
+		<script src="js/THREEx.KeyboardState.js"></script>
+		<script src="js/THREEx.FullScreen.js"></script>
+		<script src="js/THREEx.WindowResize.js"></script>
+	</head>
+	<body>
+	<script>
+	var renderer, camera, scene;
+	var cube_texture, loader, cube, cube_material, cube_geometry;
+	var controls, light;
+	var keyboard  = new THREEx.KeyboardState();
+	init();
+	animate();
+	function init()
+	{			
+		camera = new THREE.PerspectiveCamera(50,window.innerWidth / window.innerHeight, 1,10000);
+		camera.position.z=50;
+		scene = new THREE.Scene();
+		scene.background = new THREE.Color( 0xf7f7f9 );
+		controls = new THREE.TrackballControls( camera );
+
+		light = new THREE.SpotLight( 0xFFFFFF,0.7 );
+		light.position.set( 0, 0, 30 );				
+
+		light.target = scene;
+		light.castShadow = true;
+		light.receiveShadow = true;
+		light.shadowDarkness = 0.2;
+		light.shadowCameraNear	= 0.2;	
+		scene.add(light);
+		
+		//ground
+		var ground_geometry = new THREE.PlaneGeometry(30, 30, 3, 3);
+		var ground_material = new THREE.MeshLambertMaterial({color: 0xCC9966});
+		var ground_mesh = new THREE.Mesh(ground_geometry, ground_material);
+		ground_mesh.position.set(0, 0, -7);
+		ground_mesh.receiveShadow = true;
+		ground_mesh.castShadow = true;
+		scene.add(ground_mesh);								
+
+		//cylinder 
+		cylinder_geometry=new THREE.CubeGeometry( 5, 5, 5);				 
+		cylinder_material=new THREE.MeshBasicMaterial({color: 0xCCC000});
+		cylinder=new THREE.Mesh(cylinder_geometry, cylinder_material);
+
+		//cylinder shadow
+		cylinder.position.set(0,0,0);
+		cylinder.castShadow = true;
+		cylinder.receiveShadow = true;
+
+		scene.add( cylinder );
+
+		renderer = window.WebGLRenderingContext ? new THREE.WebGLRenderer({antialias:true}) : new THREE.CanvasRenderer();
+		//renderer.setSize( window.innerWidth, window.innerHeight );
+		renderer.setSize( 800, 300 );
+		renderer.shadowMapEnabled = true;
+		document.body.appendChild( renderer.domElement );
+	}
+	function animate() 
+	{
+			
+		requestAnimationFrame( animate );
+
+		// cube.rotation.z += 0.01;
+		// cube.rotation.y += 0.01;
+		controls.update();
+		
+		renderer.render( scene, camera );
+	};	
+	</script>
+	</body>
+</html>

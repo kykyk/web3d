@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+    <head> 
+	     <script src="./js/three.min.js"></script>
+		 <script src="./js/TrackballControls.js"></script>
+	</head>
+	<body>
+        
+		<script>
+
+		var renderer, camera, scene;
+		var cube_texture, loader, cube, cube_material, cube_geometry;
+		var controls, light;
+		
+		
+		
+		init();
+		animate();
+		function init()
+			{
+				
+
+				camera = new THREE.PerspectiveCamera(50,window.innerWidth / window.innerHeight, 1,10000);
+				camera.position.z=500;
+				scene = new THREE.Scene();
+				scene.background = new THREE.Color( 0xf7f7f9 );
+				controls = new THREE.TrackballControls( camera );
+				
+				light = new THREE.DirectionalLight( 0xffffff,1 );
+				light.position.set( 0, 0, 300 ).normalize();
+				scene.add(light);
+				
+
+				cube_geometry=new THREE.CubeGeometry( 100, 200, 250);
+			 
+				var cube_material = [
+
+				new THREE.MeshPhongMaterial({map: THREE.ImageUtils.loadTexture('1.jpg'),overdraw:true}),
+
+				new THREE.MeshPhongMaterial({map: THREE.ImageUtils.loadTexture('2.jpg'),overdraw:true}),
+
+				new THREE.MeshPhongMaterial({map: THREE.ImageUtils.loadTexture('3.jpg'),overdraw:true}),
+
+				new THREE.MeshPhongMaterial({map: THREE.ImageUtils.loadTexture('4.jpg'),overdraw:true}),
+
+				new THREE.MeshPhongMaterial({map: THREE.ImageUtils.loadTexture('5.jpg'),overdraw:true}),
+
+				new THREE.MeshPhongMaterial({map: THREE.ImageUtils.loadTexture('6.jpg'),overdraw:true})
+
+ 				];
+
+ 				var meshFaceMaterial = new THREE.MeshFaceMaterial( cube_material );
+
+				cube=new THREE.Mesh(cube_geometry, meshFaceMaterial);
+				scene.add(cube);
+
+				renderer = window.WebGLRenderingContext ? new THREE.WebGLRenderer({antialias:true}) : new THREE.CanvasRenderer();
+				//renderer.setSize( window.innerWidth, window.innerHeight );
+				renderer.setSize( 800, 300 );
+				document.body.appendChild( renderer.domElement );
+
+
+			}
+		function animate() 
+			{
+ 
+			requestAnimationFrame( animate );
+			cube.rotation.z += 0.01;
+			cube.rotation.y += 0.01;
+			controls.update();
+			
+ 			renderer.render( scene, camera );
+			};		
+
+
+
+		</script>
+	</body>
+</html>

@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>WEB</title>
+  
+    <meta charset="windows-1251">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<!-- Latest compiled and minified CSS -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.5/css/bootstrap.min.css" integrity="sha384-AysaV+vQoT3kOAXZkl02PThvDr8HYKPZhNT5h/CXfBThSRXQ6jW5DO2ekP5ViFdi" crossorigin="anonymous">
+
+	<!-- Optional theme -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+	<!-- Latest compiled and minified JavaScript -->
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+    </head>
+    <body class="bg-faded">
+        <div class="container" style="padding-top: 5rem">
+            <div class="row row-offcanvas row-offcanvas-right">
+                <div class="">
+                    <div class="jumbotron">
+                        <div class="container">
+                            <!--img class="col-lg-1" src="http://school65.zp.ua/images/remote/https--lh3.ggpht.com-OlbaxJZO76p1RmxNEV2p43gxB9YytGyb3GFSiY9mWXZYSAoRuTwiH6l-ee-3KKxR0gw300" data-toggle="lightbox" alt="ZNU"-->
+                            <h1 class="display-5">Програмування компьютерної графіки у WEB</h2>
+                            <p></p>
+                        </div>
+                    </div>
+                    <div>
+                     <div ng-controller = "main_cont">
+						<nav class="navbar  navbar-light navbar-fixed-top" style="background-color: #FFFFFF">
+							<a class="navbar-brand" href="#">WEB</a>
+							<div>
+								<ul class="nav navbar-nav pull-xs-left">
+									<li class="nav-item nav-link" ng-repeat = "doc in item.sub_puncts" ng-click="get_doc(item,doc)">лаб1</li>
+									<li class="nav-item nav-link" ng-repeat = "doc in item.sub_puncts" ng-click="get_doc(item,doc)">лаб2</li>
+								</ul>
+
+								<ul style="float: right!important; margin-bottom: 0">
+									<li class="nav-item nav-link">
+										<img src="http://school65.zp.ua/images/remote/https--lh3.ggpht.com-OlbaxJZO76p1RmxNEV2p43gxB9YytGyb3GFSiY9mWXZYSAoRuTwiH6l-ee-3KKxR0gw300" data-toggle="lightbox" alt="ZNU" height="40px" width="40px">
+									</li>
+								</ul>
+
+							</div>
+						</nav>
+						<nav class = "links col-lg-3 container-fluid navbar-fixed-top-left">
+							<div>
+								<div ng-repeat = "link in current_doc.links">
+									<ul class="list-group">
+									 <li class="list-group-item list-group-item-action"><a href="laba_1\index.html" target="color">Лаб 1</a></li>
+									  <li class="list-group-item list-group-item-action"><a href="laba_2\index.html" target="color">Лаб 2</a></li>
+									   <li class="list-group-item list-group-item-action"><a href="laba_3\index.html" target="color">Лаб 3</a></li>
+										<li class="list-group-item list-group-item-action"><a href="laba_4\index.html" target="color">Лаб 4</a></li>
+										<li class="list-group-item list-group-item-action"><a href="laba_5\index.html" target="color">Лаб 5</a></li>
+										<li class="list-group-item list-group-item-action"><a href="laba_6\index.html" target="color">Лаб 6</a></li>
+										<li class="list-group-item list-group-item-action"><a href="laba_7\index.html" target="color">Лаб 7</a></li>
+										<li class="list-group-item list-group-item-action"><a href="idz\index.html" target="color">ИДЗ</a></li>
+									</ul>
+								</div>
+							</div>
+						</nav>
+						<div>						
+							<iframe class = "col-lg-9" name="color" src="laba_1\index.html" style="height: 22rem; border:none;">							
+						</div>
+
+					</div>
+
+                    </div>
+
+                </div>
+
+            </div>
+            <!--/row-->
+
+            <footer class="navbar-bottom row-fluid" >
+                <div class="navbar-inner">
+                    <div class="container"> <br>
+                        <p>&copy; 2016</p>
+                    </div>
+                </div>
+            </footer>
+        </div>
+</body>
+</html>
