@@ -54,6 +54,7 @@ const labsPaths = {
     src: `./labs`,
     dest: `${dirs.dest}/labs`,
     jsonFile: `${dirs.dest}/labs.json`,
+    nameFileSetupLab: 'setup-lab.json',
 };
 
 // ================ task ================
@@ -169,16 +170,28 @@ export class Gulpfile {
 
         return gulp.src(`${labsPaths.src}/*`)
             .on('data', (file) => {
-                if (!(fs.statSync(file.path).isDirectory() && fs.existsSync(`${file.path}/index.html`))) return;
+                if (!(fs.statSync(file.path).isDirectory())) return;
 
                 let nameLabs = path.relative(labsPaths.src, file.path);
-                if (isUndefined(obj[nameLabs])) {
-                    obj[nameLabs] = {};
-                }
-                if (isUndefined(obj[nameLabs].docx)) {
-                    obj[nameLabs].docx = [];
+                obj[nameLabs] = {};
+
+                let pathSetupLab = `${file.path}/${labsPaths.nameFileSetupLab}`;
+                if (fs.existsSync(pathSetupLab)) {
+                    let contentSetupLab = fs.readFileSync(pathSetupLab, 'utf8');
+                    let setupLab = JSON.parse(contentSetupLab);
+                    obj[nameLabs].url = setupLab.indexFile;
+                    obj[nameLabs].name = setupLab.nameLab;
+                } else {
+                    if (!(fs.existsSync(`${file.path}/index.html`))) {
+                        delete obj[nameLabs];
+                        return;
+                    }
+
+                    obj[nameLabs].url = "index.html";
+                    obj[nameLabs].name = nameLabs as string;
                 }
 
+                obj[nameLabs].docx = [];
             })
             .on('end', () => {
                 fs.writeFileSync(labsPaths.jsonFile, JSON.stringify(obj), 'utf8');
@@ -215,7 +228,7 @@ export class Gulpfile {
 
     @SequenceTask()
     default() {
-        return ['clean', 'libs', 'jsfiles', 'pages', 'fonts', 'styles', 'tslint', 'compile','labs']
+        return ['clean', 'libs', 'jsfiles', 'pages', 'fonts', 'styles', 'tslint', 'compile', 'labs']
     }
 
     @SequenceTask()

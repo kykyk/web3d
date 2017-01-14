@@ -32,6 +32,7 @@
   },
   "devDependencies": {
     "@types/core-js": "^0.9.35",
+    "@types/jquery": "^2.0.39",
     "@types/node": "^6.0.52",
     "del": "^2.2.2",
     "docxtemplater": "^3.0.2",

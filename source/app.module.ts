@@ -3,6 +3,7 @@ import {BrowserModule} from '@angular/platform-browser';
 
 import {MainAppComponent}  from './app/main/main-app.component';
 import {MenuSidebarComponent} from './app/menu-sidebar/menu-sidebar.component';
+import {HttpModule} from "@angular/http";
 
 import {AppRoutingModule} from "./app-routing.module";
 
@@ -14,6 +15,7 @@ import {LabsComponent} from "./app/labs/labs.component";
 @NgModule({
     imports: [
         BrowserModule,
+        HttpModule,
         AppRoutingModule,
     ],
     declarations: [
